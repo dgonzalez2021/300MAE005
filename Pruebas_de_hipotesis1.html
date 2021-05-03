@@ -247,130 +247,148 @@ div.tocify {
 </div>
 
 
-<div id="punto-1" class="section level2">
-<h2>Punto 1</h2>
-<p>Los directivos de una ensambladora de automóviles de gran tamaño están tratando de decidir si compraran neumáticos de la marca A o de la marca B para sus modelos nuevos. Con el fin de ayudarlos a tomar una decision se realiza un experimento en el que se usan 200 neumáticos de cada marca. Los neumáticos se utilizan hasta que se desgastan completamente. Los resultados son los siguientes:</p>
-<pre class="r"><code>#-----------------------------------------------------
-
-
-A=c(  55145, 58026, 58795, 54660, 61153, 56969, 61764, 59094, 60456, 54557, 52484, 59600, 
-      65328, 55317, 59132, 61879, 56978, 63847, 59054, 62958, 63625,  54882, 60977, 52956, 
-      55874, 62035, 59729, 59276, 54498, 44541, 62515, 58680, 48413, 55278, 62382, 58458, 
-      60689, 52735, 65378, 63553, 51734, 48638, 58945, 65618, 51017, 57320, 56205, 55164, 
-      59566, 55459, 55944, 58553, 54123, 53997, 55400, 52959, 64212, 64364, 50704, 56016, 
-      63079, 58443, 57731, 55009, 55040, 64706, 54833, 70519, 55874, 54464, 63194, 60578, 
-      49799, 59446, 48464, 53718, 49209, 56571, 55349, 51468, 50086, 54430, 52669, 63818,  
-      48477, 61231, 55310, 64944, 63267, 63753, 47386, 56677, 54458, 46094, 61715, 75513, 
-      62476, 63214, 62127, 51285, 46653, 51599, 64927, 60860, 60712, 61237, 68460, 51770, 
-      58827, 50638, 53963, 66139, 62998, 66897, 61745, 54100, 55902, 53372, 58597, 58287, 
-      48172, 59902, 58084, 50986, 50958, 61611, 47682, 54107, 54065, 52178, 47878, 68258, 
-      63429, 53436, 58485, 62726, 56854, 67293, 66522, 54483, 55345, 61032, 56404, 60082, 
-      63652, 59270, 64899, 53591, 49319, 56158, 57763, 67967, 53519, 51795, 57936, 60034, 
-      58262, 57925, 53085, 59093, 57550, 55385, 54914, 58514, 54447, 62260, 48733, 66677, 
-      57977, 58299, 50211, 53479, 61244, 71311, 62398, 55685, 58236, 56846, 57032, 55161, 
-      57037, 59103, 57574, 51568, 60970, 60623, 58770, 60432, 49727, 51234, 60849, 66895, 
-      56137, 63133, 55200, 51999, 57924, 49944, 69043, 57362)
-# ----------------------------------------------------
-B=c(60970, 62409, 60546, 58508, 58974, 56682, 59483, 58048, 73107, 61977, 55974, 58522, 
-    56650, 70118, 48307, 43589, 60972, 55117, 59073, 51849, 57432, 60040, 52646, 55260, 
-    65484, 54130, 49460, 63123, 55019, 52860, 52371, 56559, 54470, 53761, 49789, 51794, 
-    67162, 62151, 59419, 53530, 60282, 49281, 51988, 66773, 54680, 59851, 63318, 62390, 
-    60868, 50775, 61432, 59240, 62158, 59505, 56764, 58610, 54403, 41256, 51839, 50015, 
-    60640, 59592, 67239, 63151, 71271, 67475, 50661, 54248, 52843, 62211, 60228, 61028, 
-    59141, 68663, 46742, 62955, 58379, 58536, 68192, 59237, 66816, 66133, 56561, 59737, 
-    60844, 56732, 66091, 58064, 59967, 55692, 59892, 59344, 57747, 59144, 68256, 60708, 
-    58412, 61619, 65965, 61758, 57421, 47994, 66435, 64331, 55178, 54500, 50148, 57984, 
-    80090, 71121, 69179, 65242, 63310, 70453, 55732, 53568, 56707, 61417, 61650, 60417, 
-    54468, 66846, 61566, 68068, 65289, 48776, 56604, 57284, 58633, 69215, 56645, 51395, 
-    65065, 66168, 55952, 53590, 62492, 52170, 57820, 61187, 62834, 57332, 53411, 52159,
-    54241, 64803, 53728, 50837, 55228, 57432, 62616, 61347, 58771, 62598, 67617, 63428,
-    55349, 64973, 59940, 64304, 65039, 51581, 58681, 68861, 57316, 61088, 55170, 62741, 
-    52045, 65029, 52823, 65256, 64420, 69404, 57772, 64778, 66935, 58165, 40556, 59225,
-    56853, 50115, 61679, 70560, 54832, 54124, 58179, 63385, 57324, 64535, 59550, 53822,
-    61049, 60865, 66225, 59545, 62325, 54903, 68101, 65169)
-#-------------------------------------------------------------------------------------
-# 1. dos poblaciones independientes
-# 2. veroficar si las variables son normales
-# qqnorm(A); qqline(A)
-# qqnorm(B); qqline(B)
-
-shapiro.test(A) # asminos que A es normal</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  A
-## W = 0.99534, p-value = 0.7991</code></pre>
-<pre class="r"><code>shapiro.test(B) # asumimos que B es normal</code></pre>
-<pre><code>## 
-##  Shapiro-Wilk normality test
-## 
-## data:  B
-## W = 0.99439, p-value = 0.6593</code></pre>
-<pre class="r"><code># 3. verificar si las varianzas son iguales o diferentes
-var.test(A,B) #  (0.6065599 ; 1.0590752) suponemos varianzas iguales</code></pre>
-<pre><code>## 
-##  F test to compare two variances
-## 
-## data:  A and B
-## F = 0.80149, num df = 199, denom df = 199, p-value = 0.1194
-## alternative hypothesis: true ratio of variances is not equal to 1
-## 95 percent confidence interval:
-##  0.6065599 1.0590752
-## sample estimates:
-## ratio of variances 
-##          0.8014939</code></pre>
-<pre class="r"><code># 4. realizar la comparacion de medias
-
-t.test(B, A,               #  519.8164 2779.4036
-       paired = FALSE, 
-       var.equal = TRUE,
-       conf.level = 0.95)</code></pre>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  B and A
-## t = 2.8705, df = 398, p-value = 0.004317
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##   519.8164 2779.4036
-## sample estimates:
-## mean of x mean of y 
-##  59298.80  57649.19</code></pre>
-<p>¿Que marca de neumáticos escogería entre las dos opciones de acuerdo a la anterior información? Suponga que las poblaciones se distribuyen de forma aproximadamente normal .</p>
+<div id="pruebas-de-hipotesis-parametricas" class="section level2">
+<h2><strong>Pruebas de hipotesis parametricas</strong></h2>
+<p>Procedimientos para realizar una prueba de hipótesis estadística en caso de realizar el procedimiento paso a paso.</p>
+<ul>
+<li><p>Determinar <span class="math inline">\(Ho\)</span> y <span class="math inline">\(Ha\)</span></p></li>
+<li><p>Establecer el <span class="math inline">\(EdeP\)</span></p></li>
+<li><p>Calcular el Estadístico de Prueba <span class="math inline">\(EdeP\)</span>, con los valores obtenidos en la(s) muestra(s)</p></li>
+<li><p>Construir la Región de Rechazo, <span class="math inline">\(RdeR\)</span></p></li>
+<li><p>Concluir a partir de la Regla de decisión 1, <span class="math inline">\(RdeD1\)</span></p></li>
+</ul>
+<p>En caso de realizarlo con ayuda de un programa estadístico</p>
+<ul>
+<li><p>Determinar las hipótesis nula <span class="math inline">\(Ho\)</span> y hipótesis alterna <span class="math inline">\(Ha\)</span></p></li>
+<li><p>Determinar la prueba a realizar</p></li>
+<li><p>Procesar la información</p></li>
+<li><p>Concluir a partir de los resultados obtenidos teniendo en cuenta la <span class="math inline">\(RdeD2\)</span> o <span class="math inline">\(RdeD3\)</span></p></li>
+</ul>
+<hr />
 </div>
-<div id="punto-2" class="section level2">
-<h2>Punto 2</h2>
-<p>El Director de una fabrica de muebles desea estimar el tiempo promedio que toma perforar tres agujeros en una placa metálica que se utiliza en la construcción de bases para mesas metálicas. El desea tener una confianza del 95% para que la media muestral este dentro de 5 segundos de la media real, suponiendo que <span class="math inline">\(\sigma=40\)</span>, obtenida en estudios anteriores. Una de las firmas contactadas para la realización del estudio indica que para esas condiciones, deberá realizar 175 mediciones. El Director le pide que revise la información suministrada y le de su concepto.</p>
+<div id="casos-para-una-población" class="section level2">
+<h2><strong>Casos para una población</strong></h2>
+<div id="pruebas-para-una-media" class="section level3">
+<h3>Pruebas para una media</h3>
+<div id="problema-1" class="section level4">
+<h4>Problema 1</h4>
+<p>Un informe indica que el precio medio del pasaje de avión entre Cali y San Andrés es de $ 120 mil pesos y su desviación estándar de $ 40 mil pesos. Se toma una muestra que se registra a continuación.</p>
+<p>¿Se puede aceptar, con un nivel de significación igual a 0.1, las afirmaciones acerca de la media y de la desviación?</p>
+<pre class="r"><code>x1=c(165.1,91.8,128.3,160.3,103.6,153.2,50.7,150.3,160.8,38.1,98.8,88.7,123.1, 106.5,79.5,84.1,216.1,139.8,98.4,127.1,103.0,83.7,158.8,126.1,113.4,61.3,  79.8,121.8,89.9,97.4,134.0,141.2,154.3,122.4,107.6,137.7,121.0,187.7,56.8, 79.5,183.8,114.7,80.2,97.3,113.8,92.4,123.5,138.4,114.7,48.8,178.1,106.0, 103.1,100.8,180.7,113.1,121.4,163.0,51.4,135.5,104.5,202.1,171.0,100.7, 56.4,99.7,93.0,118.3,110.4,136.9,112.3,69.8,138.3,87.2,121.8,118.6,174.5, 77.7,158.5,85.3,71.4,63.0,140.9,126.9,194.2,136.7,98.8,222.5,131.3,175.0, 127.7,88.5,104.5,144.7,73.0,97.2,131.0,120.5,166.6,96.0)</code></pre>
+<hr />
 </div>
-<div id="punto-3" class="section level2">
-<h2>Punto 3</h2>
+<div id="problema-2" class="section level4">
+<h4>Problema 2</h4>
+<p>La duración de las bombillas de 100 W que fabrica una empresa la cual garantiza que funciona al menos 800 horas. Se escoge al azar una muestra de los tiempos de 25 bombillas de un lote y se les mide su tiempo de duración y esta información se reporta a continuación</p>
+<ul>
+<li><p>Con un nivel de significación de 0.05, ¿habría que rechazar el lote por no cumplir la garantía? Responder usando intervalos de confianza, región de rechazo y valor p para la prueba de hipótesis planteada.</p></li>
+<li><p>¿Es la variabilidad de los tiempos inferior a 10 horas? Responder usando intervalos de confianza, región de rechazo y valor p para la prueba de hipótesis planteada.</p></li>
+<li><p>Si la media y la varianza de los tiempos es realmente <span class="math inline">\(700\)</span> <span class="math inline">\(horas\)</span> y <span class="math inline">\(121\)</span> <span class="math inline">\(horas^2\)</span> respectivamente ¿En qué porcentaje de las muestras de <span class="math inline">\(25\)</span> tiempos de bombillas la suma de los tiempos de duración es superior a <span class="math inline">\(17500\)</span> horas?</p></li>
+<li><p>Graficar la información para respaldar las conclusiones de los literales anteriores del presente ejercicio.</p></li>
+</ul>
+<pre class="r"><code> x2=c(751,749,749,745,740,743,737,749,734,755,742,758,754,750,772,741, 750,769,732,753,761,750,774,751) </code></pre>
+<hr />
+</div>
+<div id="problema-3" class="section level4">
+<h4>Problema 3</h4>
+<p>Se esta calibrando una balanza al pesar una patrón de prueba de 1000 g, 60 veces, arroja los siguientes datos. Realice un contraste de hipótesis para determinar si la balanza se encuentra calibrada. Utilice un <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<pre class="r"><code>x3=c(1000.62, 1001.80,  999.10, 1003.21,  997.56, 1001.77, 1001.11, 1000.69,  999.93, 1001.52,  998.72, 1002.08, 1001.56,  999.52,  997.76, 1002.36, 998.70,  998.16, 1002.29, 1002.10, 1001.33, 1002.86, 1006.61,  997.82,  999.64, 1000.90,  999.66, 1000.37, 1000.12,  996.68, 1005.97, 1003.08, 1000.79, 1001.82, 1002.54,  999.01, 998.95,  999.08, 1001.48,  998.71,  998.10, 1001.10,  999.96, 1000.27, 1004.46, 1003.77, 1000.04, 1000.54, 999.17,  996.17, 1001.85,  998.46,  999.91, 1001.07, 1004.19, 1002.49,  998.99, 1000.48, 1000.42,  999.32)</code></pre>
+<hr />
+</div>
+<div id="problema-4" class="section level4">
+<h4>Problema 4</h4>
+<p>En una sucursal bancaria se desarrolla un proceso para mejorar el servicio de sus clientes durante el horario del medio dia (12:00 a 14:00 ) El tiempo de espera en la fila durante este tiempo se registra durante un dia seleccionado de manera aleatoria a 15 clientes con los siguientes resultados:</p>
+<p>Existe evidencia en los datos que permitan afirmar que un cliente espera en la fila para ser atendido un tiempo promedio inferior a 5 minutos?</p>
+<pre class="r"><code>x4=c(4.21,5.55,3.02,5.13,4.77,2.34,5.42,4.50,6.10,3.80,5.12,6.46,6.19,3.79,3.54)</code></pre>
+<hr />
+</div>
+</div>
+<div id="pruebas-para-una-proporción" class="section level3">
+<h3>Pruebas para una proporción</h3>
+<div id="problema-5" class="section level4">
+<h4>Problema 5</h4>
+<p>Una empresa al seleccionar su personal lo somete a un curso de entrenamiento. Por su experiencia se conoce que el 76% de los aspirantes aprueban el curso. Los encargados del proceso efectúan cambios al programa de entrenamiento, al cual se inscriben 40 aspirantes de los cuales lo aprueban 24. ¿Podría afirmarse que los cambios realizados en el programa de entrenamiento reducen la selección?</p>
+<pre class="r"><code>n=40
+x=24</code></pre>
+<hr />
+</div>
+</div>
+<div id="pruebas-para-una-varianza" class="section level3">
+<h3>Pruebas para una varianza</h3>
+<div id="problema-6" class="section level4">
+<h4>Problema 6</h4>
+<p>Un fabricante de baterías para celulares afirma que el tiempo de duración de sus baterías se distribuyen aproximadamente normal con una desviación estándar de 9 horas. Un comprador antes de realizar una compra de este producto le solicita una muestra de 10 baterías para verificar la información que le esta dando. Con este propósito son enviadas al laboratorio y se obtienen los siguientes datos</p>
+<p>Es cierta la información suministrada por el fabricante?</p>
+<pre class="r"><code>x6=c(11.1, 15.6, 11.1,  7.5,  7.9, 14.7,  6.3,  8.5,  8.0 , 7.6)</code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="casos-para-dos-poblaciones" class="section level2">
+<h2><strong>Casos para dos poblaciones</strong></h2>
+<div id="pruebas-para-diferencia-de-medias---grupos-pareados" class="section level3">
+<h3>Pruebas para diferencia de medias - grupos pareados</h3>
+<div id="problema-7" class="section level4">
+<h4>Problema 7</h4>
+<p>El director de un gimnasio requiere determinar si contrata o no a un instructor para su campaña de reducción de peso. Para tomar la decisión decide tomar un grupo de 16 personas que acuden normalmente para darle una oportunidad a un aspirante al cargo. Los siguientes datos corresponden a los resultados obtenidos antes y despues de un mes de estar en el programa.</p>
+<p>Utilice un nivel de significancia <span class="math inline">\(\alpha = 0.10\)</span>, para determinar si contrata o no al aspirante.</p>
+<pre class="r"><code>pant=c(104.5,89,84.5,106,90,96,79,90,85,76.5,91.5,82.5,100.5,89.5,121.5,72)
+pdes=c(98,85.5,85,103.5,88.5,95,79.5,90,82,76,89.5,81,99.5,86.5,115.5,70)</code></pre>
+<hr />
+</div>
+</div>
+<div id="pruebas-para-diferencia-de-medias---grupos-independiente" class="section level3">
+<h3>Pruebas para diferencia de medias - grupos independiente</h3>
+</div>
+<div id="pruebas-para-igualdad-de-varianzas" class="section level3">
+<h3>Pruebas para igualdad de varianzas</h3>
+<div id="problema-8" class="section level4">
+<h4>Problema 8</h4>
+<p>Una empresa desarrolla un curso de entrenamiento para sus empleados, formando dos grupos y aplicando dos metodologías diferentes de entrenamiento con el fin de poder evaluar que método produce los mejores resultados. El primer grupo (g1) esta conformado por 36 empleados y el segundo grupo (g2) por 40 empleados . Se puede afirmar que el método aplicado al segundo grupo produce mejores resultados que el aplicado al primer grupo ? ¿Que supuestos debe tener en cuenta?</p>
+<pre class="r"><code>g1=c(6.8, 6.1, 5.8, 5.9, 5.8, 6.4, 5.7, 6.0, 5.9, 6.4, 6.0, 5.7, 6.5, 6.5, 6.0,  5.9, 5.7, 5.8, 5.9, 5.8, 6.0, 6.0, 5.8, 5.7, 6.1, 5.9, 5.2, 6.3, 5.4, 6.5,  5.5, 5.9, 7.0, 6.4, 5.1, 6.3)
+g2=c(8.8, 8.5, 8.4, 8.5, 7.6, 8.7, 8.0, 7.9, 8.2, 8.0, 7.8, 8.6, 8.5, 7.9, 8.5, 8.3, 8.4, 8.2, 8.3, 7.9, 8.2, 7.7, 7.8, 7.7, 8.1, 8.0, 8.3, 8.2, 8.1, 8.3, 8.1, 8.8, 7.7, 9.1, 7.6, 8.4, 8.2, 8.3, 8.1, 8.7)</code></pre>
+<hr />
+</div>
+</div>
+<div id="pruebas-para-diferencia-de-proporciones" class="section level3">
+<h3>Pruebas para diferencia de proporciones</h3>
+<div id="problema-9" class="section level4">
+<h4>Problema 9</h4>
+<p>Una encuesta realizada a 100 usuarios de una tarjeta de crédito seleccionados aleatoriamente, 57 dijeron que sabían que empleando su tarjeta podían ganar millas de viajero. Después de una campaña publicitaria para difundir este beneficio, se realizo una encuesta independiente entre 200 usuarios de la tarjeta de crédito y 135 informaron que conocían el beneficio. ¿Se puede concluir que el conocimiento de este beneficio aumento después de la campaña publicitaria?</p>
+<pre class="r"><code>n1=100
+x1=57
+
+n2=200
+x2=135</code></pre>
+</div>
+<div id="problema-10" class="section level4">
+<h4>Problema 10</h4>
 <p>Un estudio realizado por MasterCard revelo que 131 de las 468 mujeres que efectuaron compras en almacén lo hicieron utilizando la tarjeta de crédito propia del almacén, mientras que 57 de 237 hombres utilizaron la misma tarjeta para sus compras en el almacén. ¿ Existe evidencia suficiente en los datos que permita concluir que la proporción de mujeres es mayor que la proporción de hombres que utilizan la tarjeta de crédito propia del almacén para realizar sus compras?</p>
+<pre class="r"><code>x1=131
+n1=468
+
+x2=57
+n2=237</code></pre>
 </div>
-<div id="punto-4" class="section level2">
-<h2>Punto 4</h2>
-<p>Una muestra de siete bloques de concreto tienen la siguiente fuerza de compresión medida en MPa . Los resultados obtenidos son:</p>
-<pre class="r"><code>x=c(1367.6, 1411.5, 1318.7, 1193.6, 1406.2, 1425.7, 1572.4)
-# generar una gran muestra de medias 
-m=1000
-n=7
-data=sample(x,m*n,replace = TRUE)
-data=matrix(data, nrow = m)
-mx=apply(data,1,mean)
-q=quantile(mx,c(0.025,0.975))
-IC1=q
-IC2=2*mean(mx)-q
-IC1</code></pre>
-<pre><code>##     2.5%    97.5% 
-## 1308.143 1462.047</code></pre>
-<pre class="r"><code>IC2</code></pre>
-<pre><code>##     2.5%    97.5% 
-## 1460.814 1306.911</code></pre>
-<p>Estime un intervalo de confianza del 95% para la media de la fuerza de compresion de los bloques de concreto</p>
 </div>
-<div id="punto-5" class="section level2">
-<h2>Punto 5</h2>
-<p>Con el fin de estimar la proporción de personas que eventualmente votarian por un candidato se desea calcular el tamaño de muestra que permita estimar un intervalo de confianza del 96%, con un margen de error del 2% . ¿Que tamaño debera tener la muestra para cumplir con las anteriores condiciones?</p>
-<pre class="r"><code># rmarkdown::render(&quot;T_intervalos_de_confianza2.Rmd&quot;, encoding = &quot;UTF-8&quot;)</code></pre>
+</div>
+<div id="codigos-r" class="section level2">
+<h2><strong>Codigos R</strong></h2>
+<pre class="r"><code># Codigos R
+
+# t.test(x, y = NULL,
+#       alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+#       mu = 0, paired = FALSE, var.equal = FALSE,
+#       conf.level = 0.95, ...)
+
+# prop.test(x, n, p = NULL,
+#          alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+#          conf.level = 0.95, correct = TRUE)
+
+# var.test(x, y, ratio = 1,
+#         alternative = c(&quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;),
+#         conf.level = 0.95, ...)</code></pre>
+<pre class="r"><code># rmarkdown::render(&quot;Pruebas_de_hipotesis.Rmd&quot;, encoding = &quot;UTF-8&quot;)</code></pre>
 </div>
 
 

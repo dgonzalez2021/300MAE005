@@ -3,14 +3,14 @@ title: "Taller2 Intervalo de confianza"
 author: "dgonzalez"
 subtitle: "Modulo 4- Unidad 4.2" 
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
   html_document:
     toc: yes
     toc_depth: 2
     toc_float: yes
     theme: cosmo
-  pdf_document:
-    toc: yes
-    toc_depth: '2'
 ---
 
 ```{r setup, include=FALSE}
@@ -58,6 +58,24 @@ B=c(60970, 62409, 60546, 58508, 58974, 56682, 59483, 58048, 73107, 61977, 55974,
     52045, 65029, 52823, 65256, 64420, 69404, 57772, 64778, 66935, 58165, 40556, 59225,
     56853, 50115, 61679, 70560, 54832, 54124, 58179, 63385, 57324, 64535, 59550, 53822,
     61049, 60865, 66225, 59545, 62325, 54903, 68101, 65169)
+#-------------------------------------------------------------------------------------
+# 1. dos poblaciones independientes
+# 2. veroficar si las variables son normales
+# qqnorm(A); qqline(A)
+# qqnorm(B); qqline(B)
+
+shapiro.test(A) # asminos que A es normal
+shapiro.test(B) # asumimos que B es normal
+
+# 3. verificar si las varianzas son iguales o diferentes
+var.test(A,B) #  (0.6065599 ; 1.0590752) suponemos varianzas iguales
+
+# 4. realizar la comparacion de medias
+
+t.test(B, A,               #  519.8164 2779.4036
+       paired = FALSE, 
+       var.equal = TRUE,
+       conf.level = 0.95)
 
 ```
 
@@ -78,6 +96,18 @@ Una muestra de siete bloques de concreto tienen la siguiente fuerza de compresi�
 
 ```{r}
 x=c(1367.6, 1411.5, 1318.7, 1193.6, 1406.2, 1425.7, 1572.4)
+# generar una gran muestra de medias 
+m=1000
+n=7
+data=sample(x,m*n,replace = TRUE)
+data=matrix(data, nrow = m)
+mx=apply(data,1,mean)
+q=quantile(mx,c(0.025,0.975))
+IC1=q
+IC2=2*mean(mx)-q
+IC1
+IC2
+
 ```
 
 Estime un intervalo de confianza del 95% para la media de la fuerza de compresion de los bloques de concreto
@@ -87,5 +117,8 @@ Estime un intervalo de confianza del 95% para la media de la fuerza de compresio
 
 Con el fin de estimar la proporción de personas que eventualmente votarian por un candidato se desea calcular el tamaño de muestra que permita estimar un intervalo de confianza del 96%, con un margen de error del 2% . ¿Que tamaño debera tener la muestra para cumplir con las anteriores condiciones?
 
+```{r}
+# rmarkdown::render("T_intervalos_de_confianza2.Rmd", encoding = "UTF-8")
+```
 
 
