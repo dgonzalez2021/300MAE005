@@ -1,5 +1,5 @@
 ---
-title: "Taller2 Intervalo de confianza"
+title: "Taller1  Pruebas de hipotesis parametricas"
 author: "dgonzalez"
 subtitle: "Modulo 4- Unidad 4.2" 
 output:
@@ -16,6 +16,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 ## **Pruebas de hipotesis parametricas**
 
 Procedimientos para realizar una prueba de hipótesis estadística en caso de realizar el procedimiento paso a paso.
@@ -213,7 +214,7 @@ n2=237
 
 
 ```{r}
-# rmarkdown::render("Pruebas_de_hipotesis.Rmd", encoding = "UTF-8")
+# rmarkdown::render("/home/deg/Documentos/JAVERIANA/300MAE005-2021-1/MODULOS/300MAE005/Pruebas_de_hipotesis1.Rmd", encoding = "UTF-8")
 ```
 
 
